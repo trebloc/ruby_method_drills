@@ -1,3 +1,18 @@
+################
+#### WARMUP ####
+################
+
+#triple
+  # multiplies a given number by three
+
+def triple(n)
+  n * 3
+end
+
+#quadruple
+  # multiplies a given number by four
+
+
 #########################
 #### USING ARGUMENTS ####
 #########################
