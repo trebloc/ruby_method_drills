@@ -15,11 +15,19 @@ describe "#say_hello" do
   end
 end
 
+def say_hello
+  "hello"
+end
+
 describe "#echo" do
   it "returns the input string" do
     expect( echo("hi") ).to eq "hi"
     expect( echo("hey") ).to eq "hey"
   end
+end
+
+def echo(input)
+  input
 end
 
 describe "#eddie_izzards_height" do
