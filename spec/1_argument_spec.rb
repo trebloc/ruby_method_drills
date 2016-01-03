@@ -44,6 +44,10 @@ describe "#eddie_izzards_height" do
   end
 end
 
+#3
+def eddie_izzards_height (heel_height=0)
+  67 + heel_height
+
 describe "#how_many_args" do
   it "accepts any number of arguments without complaint" do
     expect { how_many_args(1) }.not_to raise_error
