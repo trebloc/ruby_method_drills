@@ -81,3 +81,8 @@ describe "#find_answer" do
     expect { find_answer("bad input") }.to raise_error
   end
 end
+
+#5
+def find_answer(**kwargs)
+  kwargs[:answer]
+end

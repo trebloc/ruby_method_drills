@@ -20,6 +20,11 @@ describe "#first_char" do
   end
 end
 
+#1
+def first_char(str)
+  str[0].downcase
+end  
+
 describe "#polly_wanna" do
   it "echoes the original word" do
     expect( polly_wanna("donut") ).to match /donut/i
@@ -32,12 +37,22 @@ describe "#polly_wanna" do
   end
 end
 
+#2
+def polly_wanna(str)
+  str*3
+end  
+
 describe "#count_chars" do
   it "returns the number of characters in a string" do
     expect( count_chars("123") ).to eq 3
     expect( count_chars("123456789") ).to eq 9
   end
 end
+
+#3
+def count_chars(str)
+  str.length
+end  
 
 describe "#yell" do
   it "convert the message to uppercase" do
@@ -49,6 +64,11 @@ describe "#yell" do
     expect( yell("boo") ).to eq "BOO!"
   end
 end
+
+#4
+def yell(str)
+  str.upcase + "!"
+end  
 
 describe "#to_telegram" do
   it "replaces periods with ' STOP'" do
