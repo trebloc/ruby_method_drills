@@ -20,12 +20,29 @@ describe "#count_spaces" do
   end
 end
 
+#1
+def count_spaces(str)
+  count = 0
+  space = " "
+  str.each_char do |char|
+    if char == space
+      count += 1
+    end
+  end
+  count
+end
+
 describe "#string_lengths" do
   it "converts a list of strings to a list of string lengths" do
     expect( string_lengths(["abc"]) ).to eq [3]
     expect( string_lengths([""]) ).to eq [0]
     expect( string_lengths(["abc", "a", "123456"]) ).to eq [3, 1, 6]
   end
+end
+
+#2
+def string_lengths(list)
+  list.map {|str| str.length }
 end
 
 describe "#remove_falsy_values" do
@@ -37,6 +54,11 @@ describe "#remove_falsy_values" do
     expect( remove_falsy_values([10,"hi"]) ).to eq [10,"hi"]
     expect( remove_falsy_values([0, "", nil, false, -1]) ).to eq [0,"",-1]
   end
+end
+
+#3
+def remove_falsy_values(list)
+  list.select { |item| !!item }
 end
 
 describe "#exclude_last" do
