@@ -47,6 +47,7 @@ end
 #3
 def eddie_izzards_height (heel_height=0)
   67 + heel_height
+end  
 
 describe "#how_many_args" do
   it "accepts any number of arguments without complaint" do
