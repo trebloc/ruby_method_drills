@@ -77,6 +77,11 @@ describe "#to_telegram" do
   end
 end
 
+#5
+def to_telegram(telegram)
+  telegram.gsub(/\./, " STOP")
+end  
+
 describe "#spell_out" do
   it "returns the input string, with characters seperated by dashes" do
     expect( spell_out("h") ).to eq "h"
@@ -89,6 +94,11 @@ describe "#spell_out" do
     expect( spell_out("Hello") ).to eq "h-e-l-l-o"
   end
 end
+
+#6
+def spell_out(string)
+  string.downcase.split("").join("-")
+end  
 
 describe "#seperate" do
   it "seperates characters with a custom seperator, when supplied with one" do
@@ -103,6 +113,11 @@ describe "#seperate" do
   end
 end
 
+#7
+def seperate(characters, seperator="-")
+  characters.downcase.split("").join(seperator)
+end  
+
 describe "#croon" do
   it "seperates word characters with dashes" do
     expect( croon("a") ).to eq "a"
@@ -114,6 +129,11 @@ describe "#croon" do
     expect( croon("to be") ).to eq "t-o b-e"
     expect( croon("or not") ).to eq "o-r n-o-t"
   end
+end
+
+#8 - Didn't quite understand this one and looked at the solutions
+def croon(lyric)
+  lyric.split(" ").map {|word| word.split("").join("-") }.join(" ")
 end
 
 describe "#palindrome_word?" do
@@ -129,6 +149,12 @@ describe "#palindrome_word?" do
     expect( palindrome_word?("aAA") ).to eq true
   end
 end
+
+#9 - Can't quite figure this one out.
+def palindrome_word?(word)
+  normalized = word.downcase
+  normalized.reverse == normalized
+end  
 
 describe "#palindrome_sentence?" do
   it "determines whether a sentence is a palindrome" do
@@ -151,6 +177,12 @@ describe "#palindrome_sentence?" do
     expect( palindrome_sentence?("A man, a plan, a canal: Panama!") ).to eq true
   end
 end
+
+#10
+def palindrome_sentence?(sentence)
+  normalized = sentence.gsub(/[^a-z]/i, "").downcase
+  normalized.reverse == normalized
+end  
 
 describe "#is_vowel" do
   it "determines whether a given character is a vowel" do
@@ -177,6 +209,11 @@ describe "#is_vowel" do
   end
 end
 
+#11
+def is_vowel(character)
+  character.is_a?(String) && !!character.match(/[aeiou]/i)
+end
+
 describe "#add_period" do
   it "adds a period to the end of the sentence" do
     expect( add_period("Hello") ).to eq "Hello."
@@ -191,4 +228,9 @@ describe "#add_period" do
     expect( add_period("Hi!") ).to eq "Hi!"
     expect( add_period("Hi?") ).to eq "Hi?"
   end
+end
+
+#12
+def add_period(input)
+  "!?.".include?(input[-1]) ? input : input + "."
 end
