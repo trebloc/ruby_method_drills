@@ -50,6 +50,11 @@ describe "#how_many_args" do
     expect { how_many_args(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1) }.not_to raise_error
   end
 
+#4
+def how_many_args(*args)
+  args.count
+end  
+
   it "returns the total number of arguments passed to the function" do
     expect( how_many_args(1) ).to eq 1
     expect( how_many_args(1,1,1) ).to eq 3
