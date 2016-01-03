@@ -15,6 +15,7 @@ describe "#say_hello" do
   end
 end
 
+#1 
 def say_hello
   "hello"
 end
@@ -26,6 +27,7 @@ describe "#echo" do
   end
 end
 
+#2
 def echo(input)
   input
 end
