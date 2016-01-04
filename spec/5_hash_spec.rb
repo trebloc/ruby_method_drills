@@ -23,6 +23,20 @@ describe "#character_count" do
   end
 end
 
+#1
+def character_count(sentence)
+  char_counts = {}
+  sentence.each_char do |char|
+    char = char.downcase
+    if char_counts[char].nil?
+      char_counts[char] = 1
+    else
+      char_counts[char] += 1
+    end
+  end
+  char_counts
+end
+
 describe "#word_count" do
   it "counts how many times a word appears in a string" do
     expect( word_count("hi") ).to eq({"hi"=>1})
@@ -44,10 +58,30 @@ describe "#word_count" do
   end
 end
 
+#2
+def word_count(sentence)
+  word_counts = {}
+  sentence.split(" ").each do |word|
+    word = word.downcase.gsub(/[^a-z]/i, "")
+    if word_counts[word].nil?
+      word_counts[word] = 1
+    else
+      word_counts[word] += 1
+    end
+  end
+  word_counts
+end
+
 describe "#most_frequent_word" do
   it "finds the word in a string that appears with the most frequency" do
     expect( most_frequent_word("you") ).to eq "you"
     expect( most_frequent_word("you be you") ).to eq "you"
     expect( most_frequent_word("be be be you be you") ).to eq "be"
   end
+end
+
+#3
+def most_frequent_word(sentence)
+  word_counts = word_count(sentence)
+  word_counts.empty? ? nil : word_counts.invert.max[1]
 end

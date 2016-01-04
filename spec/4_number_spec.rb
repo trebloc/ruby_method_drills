@@ -25,6 +25,16 @@ describe "#count_to" do
   end
 end
 
+#1
+def count_to(n)
+  n = n.to_i
+  if n >= 0
+    (0..n).to_a
+  else
+    0.downto(n).to_a
+  end
+end
+
 describe "#is_integer?" do
   it "returns true for Fixnums and Bignums (whole number or 'integer' types)" do
     expect( is_integer?(-10) ).to eq true
@@ -53,6 +63,12 @@ describe "#is_integer?" do
   end
 end
 
+#2
+def is_integer?(num)
+  num.class == Fixnum || num.class == Bignum || 
+    ( num.is_a?(Float) && !num.nan? && num.to_i == num )
+end
+
 describe "#is_prime?" do
   it "returns false for non-integer decimals" do
     expect( is_prime?(2.7) ).to eq false
@@ -74,6 +90,23 @@ describe "#is_prime?" do
   end
 end
 
+#3
+def is_prime?(num)
+  if !is_integer?(num) || num <= 1 # checking if whole number
+    false
+  elsif num <= 1 # checking if in range
+    false
+  else 
+    # this could be a prime! loop through and check divisibility
+    (2..(num-1)).each do |n|
+      if num % n == 0 # it's not prime
+        return false  # break the loop early
+      end
+    end
+    true
+  end
+end
+
 describe "#primes_less_than" do
   it "returns an empty array if there are no primes below num" do
     expect( primes_less_than(1) ).to eq []
@@ -88,6 +121,17 @@ describe "#primes_less_than" do
     expect( primes_less_than(5) ).to eq [2, 3]
     expect( primes_less_than(12) ).to eq [2, 3, 5, 7, 11]
   end
+end
+
+#4
+def primes_less_than(num)
+  primes = []
+  (2..num-1).each do |n|
+    if is_prime?(n)
+      primes.push n
+    end
+  end
+  primes
 end
 
 describe "#iterative_factorial" do
@@ -108,4 +152,16 @@ describe "#iterative_factorial" do
     expect( iterative_factorial(5) ).to eq 120
     expect( iterative_factorial(7) ).to eq 5040
   end
+end
+
+#5
+def iterative_factorial(num)
+  if num < 0 || !is_integer?(num)
+    return Float::NAN  # a constant meaning "Not a Number"
+  end
+  memo = 1  
+  (1..num).each do |i|
+    memo = memo*i
+  end
+  memo
 end

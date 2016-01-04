@@ -68,6 +68,11 @@ describe "#exclude_last" do
     expect( exclude_last([1]) ).to eq []
   end
 
+#4
+def exclude_last(sequence)
+  sequence[0..-2]
+end  
+
   it "removes the last item from a string" do
     expect( exclude_last("123") ).to eq "12"
     expect( exclude_last("12") ).to eq "1"
@@ -81,6 +86,11 @@ describe "#exclude_first" do
     expect( exclude_first([1,2]) ).to eq [2]
     expect( exclude_first([1]) ).to eq []
   end
+
+#5
+def exclude_first(sequence)
+  sequence[1..-1]
+end  
 
   it "removes the first character from a string" do
     expect( exclude_first("123") ).to eq "23"
@@ -111,6 +121,11 @@ describe "#exclude_ends" do
   end
 end
 
+#6 Didn't quite understand this.
+def exclude_ends(sequence)
+  sequence[1..-2]
+end
+
 describe "#select_every_even" do
   it "returns a list of even-indexed items" do
     expect( select_every_even([0,1,2]) ).to eq [0,2]
@@ -118,11 +133,21 @@ describe "#select_every_even" do
   end
 end
 
+#7
+def select_every_even(list)
+  list.select.with_index {|item, index| item if index.even? }
+end
+
 describe "#select_every_odd" do
   it "returns a list of odd-indexed items" do
     expect( select_every_odd([0,1,2]) ).to eq [1]
     expect( select_every_odd(["a","b","c","d","e"]) ).to eq ["b","d"]
   end
+end
+
+#8
+def select_every_odd(list)
+  list.select.with_index {|item, index| item if index.odd? }
 end
 
 describe "#select_every_n" do
@@ -134,6 +159,11 @@ describe "#select_every_n" do
   it "defaults to an n value of 1" do
     expect( select_every_n([0,1,2]) ).to eq [0,1,2]
   end
+end
+
+#9
+def select_every_n(list, interval=1)
+  list.select.with_index {|item, index| item if index%interval == 0 }
 end
 
 describe "#compile_agenda" do
@@ -172,4 +202,11 @@ describe "#compile_agenda" do
   it "can optionally change the bullet to a different string" do
     expect( compile_agenda( [item1, item2, item3], order="ASC", bullet="~" ) ).to eq "~ Build a game in ruby\n~ Try to take over the world\n~ Learn about Ruby"
   end
+end
+
+#10
+def compile_agenda(agenda_items, order="DESC", bullet="*")
+  sorted_agenda_items = agenda_items.sort_by {|o| o[:priority] }
+  sorted_agenda_items.reverse! if order == "ASC"
+  sorted_agenda_items.map {|o| "#{bullet} #{o[:title]}"  }.join("\n")
 end
